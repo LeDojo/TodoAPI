@@ -18,4 +18,23 @@ const addTodo = async (req, res) => {
   }
 };
 
-module.exports = { getAllTodos, addTodo };
+const removeTodo = async (req, res) => {
+  try {
+    const deleteTodo = await Todo.findOneAndDelete({_id: req.params.id});
+    res.json({deleteTodo,message:`delete todo successfully`});
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
+const updateTodo = async (req, res) => {
+  try {
+    const updateTodo = await Todo.findOneAndUpdate({_id: req.params.id}, req.body,{new: true});
+    res.json({updateTodo,message:`update todo successfully`});
+} catch (error) {
+    console.error(error.message);
+  }
+}
+
+
+module.exports = { getAllTodos, addTodo, removeTodo,updateTodo };
