@@ -1,8 +1,8 @@
+const { getAllTodos } = require("../controllers/todoController");
+
 const todoRouter = require("express").Router();
 
-todoRouter.get("/", (req, res) => {
-  res.send("All todos");
-});
+todoRouter.get("/", getAllTodos);
 
 // getTodo => Va chercher getTodo
 // getTodo() => Exécute getTodo
